@@ -1,38 +1,52 @@
+import os
 import sys
-import random
-from PySide6 import QtCore, QtWidgets, QtGui
-from switchbot_client import SwitchBotAPIClient
+
+from PySide6.QtCore import QSize, Qt
+from PySide6.QtWidgets import (
+    QApplication,
+    QMainWindow,
+    QScrollArea,
+    QVBoxLayout,
+    QWidget,
+)
+from switchbot_client import SwitchBotClient
+
+from switchbot_client_app.section import gen_section
 
 
-class MyWidget(QtWidgets.QWidget):
+class MyWidget(QWidget):
     def __init__(self):
         super().__init__()
-
-        self.hello = ["Hallo Welt", "Hei maailma", "Hola Mundo", "Привет мир"]
-
-        self.button = QtWidgets.QPushButton("Click me!")
-        self.text = QtWidgets.QLabel("Hello World", alignment=QtCore.Qt.AlignCenter)
-
-        self.layout = QtWidgets.QVBoxLayout(self)
-        self.layout.addWidget(self.text)
-        self.layout.addWidget(self.button)
-
-        self.button.clicked.connect(self.magic)
-
-    @QtCore.Slot()
-    def magic(self):
-        self.text.setText(random.choice(self.hello))
+        layout = QVBoxLayout()
+        self.setLayout(layout)
+        print(f"executable path: {os.getcwd()}")
+        local_config_path = os.path.join(os.getcwd(), "config.yml")
+        if os.path.exists(local_config_path):
+            client = SwitchBotClient(config_file_path=local_config_path)
+        else:
+            client = SwitchBotClient()
+        for device in client.devices():
+            layout = QVBoxLayout()
+            section = gen_section(self, layout, device)
+            if section is not None:
+                self.layout().addWidget(section)
 
 
 def run():
-    app = QtWidgets.QApplication([])
+    app = QApplication([])
+    window = QMainWindow()
     widget = MyWidget()
-    widget.resize(800, 600)
-    widget.show()
+    widget.setBaseSize(QSize(800, 600))
+    scroll = QScrollArea()
+    scroll.setWidget(widget)
+    scroll.setWidgetResizable(True)
+    scroll.setBaseSize(QSize(800, 600))
+    scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAsNeeded)
+    window.setCentralWidget(scroll)
+    window.resize(QSize(300, 600))
+    window.show()
     sys.exit(app.exec())
 
 
 if __name__ == "__main__":
-    c = SwitchBotAPIClient()
-    print(c.devices())
     run()

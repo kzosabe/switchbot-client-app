@@ -2,8 +2,12 @@
 __pycache__/
 *.py[cod]
 *$py.class
-build/
-dist/
-
-.idea
+/build
+/dist
+/*.spec
+/.mypy_cache
+/.pytest_cache
+/.idea
+/.tox
+/.venv
 !.keep
