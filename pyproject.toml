@@ -25,6 +25,7 @@ poetry = 'switchbot_client_app.main:run'
 python = "~3.9.6"
 switchbot-client = "^0.1.2"
 PySide6 = "^6.1.3"
+pyinstaller = "^4.5.1"
 
 [tool.poetry.dev-dependencies]
 black = ">=18.5b1"
