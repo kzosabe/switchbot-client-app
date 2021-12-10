@@ -40,7 +40,7 @@ jobs:
         run: poetry run pyinstaller --onefile --name="switchbot-client-app" --windowed switchbot_client_app/main.py
 
       - name: upload
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2.3.0
         with:
           name: windows-executable
           path: dist/switchbot-client-app.exe
@@ -80,7 +80,7 @@ jobs:
         run: poetry run pyinstaller --onefile --name="switchbot-client-app" --windowed switchbot_client_app/main.py && hdiutil create dist/SwitchBotClientApp.dmg -srcfolder dist/switchbot-client-app.app -ov
 
       - name: upload
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2.3.0
         with:
           name: mac-executable
           path: dist/switchbot-client-app.app
