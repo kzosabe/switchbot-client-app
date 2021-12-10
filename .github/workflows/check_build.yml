@@ -1,0 +1,74 @@
+name: Build App Executables
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  windows-build:
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        python-version: ["3.9.7"]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install poetry
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install poetry
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+
+      - name: Load cached venv
+        id: cached-poetry-dependencies
+        uses: actions/cache@v2
+        with:
+          path: .venv
+          key: venv-${{ runner.os }}-${{ hashFiles('**/poetry.lock') }}
+
+      - name: Install dependencies
+        if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
+        run: poetry install --no-interaction --no-root
+
+      - name: build
+        run: poetry run pyinstaller --onefile --name="switchbot-client-app" --windowed switchbot_client_app/main.py
+
+  mac-build:
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        python-version: ["3.9.7"]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install poetry
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install poetry
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+
+      - name: Load cached venv
+        id: cached-poetry-dependencies
+        uses: actions/cache@v2
+        with:
+          path: .venv
+          key: venv-${{ runner.os }}-${{ hashFiles('**/poetry.lock') }}
+
+      - name: Install dependencies
+        if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
+        run: poetry install --no-interaction --no-root
+
+      - name: build
+        run: poetry run pyinstaller --onefile --name="switchbot-client-app" --windowed switchbot_client_app/main.py && hdiutil create dist/SwitchBotClientApp.dmg -srcfolder dist/switchbot-client-app.app -ov
