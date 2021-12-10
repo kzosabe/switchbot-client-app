@@ -11,13 +11,14 @@ from PySide6.QtWidgets import (
 )
 from switchbot_client import SwitchBotClient
 
-from switchbot_client_app.section import gen_section
+from switchbot_client_app.factory import gen_section
 
 
 class MyWidget(QWidget):
     def __init__(self):
         super().__init__()
         layout = QVBoxLayout()
+        layout.setContentsMargins(24, 8, 24, 8)
         self.setLayout(layout)
         print(f"executable path: {os.getcwd()}")
         local_config_path = os.path.join(os.getcwd(), "config.yml")
@@ -26,10 +27,11 @@ class MyWidget(QWidget):
         else:
             client = SwitchBotClient()
         for device in client.devices():
-            layout = QVBoxLayout()
-            section = gen_section(self, layout, device)
+            section = gen_section(device)
             if section is not None:
                 self.layout().addWidget(section)
+            else:
+                print(f"no available section: {device.device_type}")
 
 
 def run():
