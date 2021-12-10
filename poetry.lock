@@ -337,14 +337,14 @@ diagrams = ["jinja2", "railroad-diagrams"]
 
 [[package]]
 name = "pyside6"
-version = "6.1.3"
+version = "6.2.2.1"
 description = "Python bindings for the Qt cross-platform application and UI framework"
 category = "main"
 optional = false
-python-versions = ">=3.6, <3.10"
+python-versions = ">=3.6, <3.11"
 
 [package.dependencies]
-shiboken6 = "6.1.3"
+shiboken6 = "6.2.2.1"
 
 [[package]]
 name = "pytest"
@@ -433,11 +433,11 @@ use_chardet_on_py3 = ["chardet (>=3.0.2,<5)"]
 
 [[package]]
 name = "shiboken6"
-version = "6.1.3"
+version = "6.2.2.1"
 description = "Python / C++ bindings helper module"
 category = "main"
 optional = false
-python-versions = ">=3.6, <3.10"
+python-versions = ">=3.6, <3.11"
 
 [[package]]
 name = "six"
@@ -549,7 +549,7 @@ python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,>=2.7"
 [metadata]
 lock-version = "1.1"
 python-versions = "3.9.7"
-content-hash = "ef7972fab75cba69459bf95230b84d5bddc512463df03ea4ce29b977cc1e2d78"
+content-hash = "89cdb1dbd44c6a53b512d7bd756ca5b35554973726e0112ec6c1a78d01a30309"
 
 [metadata.files]
 altgraph = [
@@ -747,9 +747,9 @@ pyparsing = [
     {file = "pyparsing-3.0.6.tar.gz", hash = "sha256:d9bdec0013ef1eb5a84ab39a3b3868911598afa494f5faa038647101504e2b81"},
 ]
 pyside6 = [
-    {file = "PySide6-6.1.3-6.1.3-cp36.cp37.cp38.cp39-abi3-macosx_10_14_x86_64.whl", hash = "sha256:619b6bb4a3e5451fe939983cb9f5155f2cded44c8449f60a1d250747a48f00f3"},
-    {file = "PySide6-6.1.3-6.1.3-cp36.cp37.cp38.cp39-abi3-manylinux1_x86_64.whl", hash = "sha256:64d69fd2d38b47982c06619f9969b6ae5c632f21f8ff2432e4953b0179a21411"},
-    {file = "PySide6-6.1.3-6.1.3-cp36.cp37.cp38.cp39-none-win_amd64.whl", hash = "sha256:cbbe1a2bacca737b3000a8a18b0ba389ca93106800b10acb93660c1a5b6bfdec"},
+    {file = "PySide6-6.2.2.1-6.2.2-cp36.cp37.cp38.cp39.cp310-abi3-macosx_10_14_universal2.whl", hash = "sha256:f9fa755b30bd8098ba3734a8a7e7664b9bf6bf53d7c0462c7e9657f8a8d3392f"},
+    {file = "PySide6-6.2.2.1-6.2.2-cp36.cp37.cp38.cp39.cp310-abi3-manylinux1_x86_64.whl", hash = "sha256:5d35206897edc00bfab3c67dcf180e45406a93c8694e68c12364c3f9e370dfc6"},
+    {file = "PySide6-6.2.2.1-6.2.2-cp36.cp37.cp38.cp39.cp310-none-win_amd64.whl", hash = "sha256:227597e427f3c516a237e714de8dc30e0a4747607ac2283dd350bd4314605803"},
 ]
 pytest = [
     {file = "pytest-6.2.5-py3-none-any.whl", hash = "sha256:7310f8d27bc79ced999e760ca304d69f6ba6c6649c0b60fb0e04a4a77cacc134"},
@@ -807,9 +807,9 @@ requests = [
     {file = "requests-2.26.0.tar.gz", hash = "sha256:b8aa58f8cf793ffd8782d3d8cb19e66ef36f7aba4353eec859e74678b01b07a7"},
 ]
 shiboken6 = [
-    {file = "shiboken6-6.1.3-6.1.3-cp36.cp37.cp38.cp39-abi3-macosx_10_14_x86_64.whl", hash = "sha256:7d285cb61dca4d543ea1ccd6f9bad1b555f222232dfc7240ebc7df83e21fb805"},
-    {file = "shiboken6-6.1.3-6.1.3-cp36.cp37.cp38.cp39-abi3-manylinux1_x86_64.whl", hash = "sha256:c44d406263c1cbd1cb92efca02790c39b1563a25e888e3e5c7291aabd2363aee"},
-    {file = "shiboken6-6.1.3-6.1.3-cp36.cp37.cp38.cp39-none-win_amd64.whl", hash = "sha256:10023b1b6b27318db74a2232e808c8e5691ec1ff39be89d9878fc60e0adbb690"},
+    {file = "shiboken6-6.2.2.1-6.2.2-cp36.cp37.cp38.cp39.cp310-abi3-macosx_10_14_universal2.whl", hash = "sha256:cbffaefe676f5cce4204d16c2d8f794521cb8c66abbe6470d6e5cb2b889c4b88"},
+    {file = "shiboken6-6.2.2.1-6.2.2-cp36.cp37.cp38.cp39.cp310-abi3-manylinux1_x86_64.whl", hash = "sha256:325eb45d8ffc59e0cb94d5fb9cdd0a8c28ed1705f3e7fd37c239a1dca50b1c22"},
+    {file = "shiboken6-6.2.2.1-6.2.2-cp36.cp37.cp38.cp39.cp310-none-win_amd64.whl", hash = "sha256:a4f267789c18caa60afd23818743a5abe164ed4f89f4eafaf4577d4fa646c293"},
 ]
 six = [
     {file = "six-1.16.0-py2.py3-none-any.whl", hash = "sha256:8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254"},
