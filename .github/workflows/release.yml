@@ -1,8 +1,8 @@
 name: Build App Executables
 on:
   push:
-    branches:
-      - main
+    tags:
+      - v*
 
 jobs:
   windows-build:

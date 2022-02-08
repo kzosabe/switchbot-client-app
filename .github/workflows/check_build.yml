@@ -1,4 +1,4 @@
-name: Build App Executables
+name: Check Build App Executables
 on:
   pull_request:
     branches:
