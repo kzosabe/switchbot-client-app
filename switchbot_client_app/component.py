@@ -39,7 +39,7 @@ def gen_turn_on_off_area(device: SwitchBotDevice, status: DeviceStatusObject):
 def gen_label(label_str: str = ""):
     label = QtWidgets.QLabel()
     label.setText(label_str)
-    label.setAlignment(QtCore.Qt.AlignCenter)
+    label.setAlignment(QtCore.Qt.AlignCenter)  # type: ignore
     return label
 
 
