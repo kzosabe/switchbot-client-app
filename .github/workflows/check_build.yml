@@ -1,4 +1,4 @@
-name: Build App Executables
+name: Check Build App Executables
 on:
   pull_request:
     branches:
@@ -9,7 +9,7 @@ jobs:
     runs-on: windows-latest
     strategy:
       matrix:
-        python-version: ["3.9.7"]
+        python-version: ["3.9.10"]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -43,7 +43,7 @@ jobs:
     runs-on: macos-latest
     strategy:
       matrix:
-        python-version: ["3.9.7"]
+        python-version: ["3.9.10"]
     steps:
       - name: Checkout
         uses: actions/checkout@v2

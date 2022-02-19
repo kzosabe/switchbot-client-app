@@ -1,15 +1,15 @@
 name: Build App Executables
 on:
   push:
-    branches:
-      - main
+    tags:
+      - v*
 
 jobs:
   windows-build:
     runs-on: windows-latest
     strategy:
       matrix:
-        python-version: ["3.9.7"]
+        python-version: ["3.9.10"]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -40,7 +40,7 @@ jobs:
         run: poetry run pyinstaller --onefile --name="switchbot-client-app" --windowed switchbot_client_app/main.py
 
       - name: upload
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2.3.1
         with:
           name: windows-executable
           path: dist/switchbot-client-app.exe
@@ -49,7 +49,7 @@ jobs:
     runs-on: macos-latest
     strategy:
       matrix:
-        python-version: ["3.9.7"]
+        python-version: ["3.9.10"]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -80,7 +80,7 @@ jobs:
         run: poetry run pyinstaller --onefile --name="switchbot-client-app" --windowed switchbot_client_app/main.py && hdiutil create dist/SwitchBotClientApp.dmg -srcfolder dist/switchbot-client-app.app -ov
 
       - name: upload
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2.3.1
         with:
           name: mac-executable
           path: dist/switchbot-client-app.app
@@ -91,12 +91,12 @@ jobs:
 
     steps:
       - name: Download Windows App
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v2.1.0
         with:
           name: windows-executable
 
       - name: Download Mac App
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v2.1.0
         with:
           name: mac-executable
 
