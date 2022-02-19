@@ -1,7 +1,7 @@
 from typing import Generic, TypeVar
 
 from PySide6 import QtCore
-from PySide6.QtCore import QTimer
+from PySide6.QtCore import QTimer, Signal
 from switchbot_client.devices import SwitchBotDevice
 from switchbot_client.devices.status import DeviceStatus
 
@@ -10,7 +10,7 @@ AnyDeviceStatus = TypeVar("AnyDeviceStatus", bound=DeviceStatus)
 
 
 class DeviceStatusObject(QtCore.QObject, Generic[AnyDevice, AnyDeviceStatus]):
-    valueUpdated = QtCore.Signal(DeviceStatus)
+    value_changed = Signal(DeviceStatus)
 
     def __init__(self, device: AnyDevice):
         super().__init__()
@@ -35,4 +35,4 @@ class DeviceStatusObject(QtCore.QObject, Generic[AnyDevice, AnyDeviceStatus]):
 
     def _update(self):
         self.__status = self.device.status()
-        self.valueUpdated.emit(self.__status)
+        self.value_changed.emit(self.__status)

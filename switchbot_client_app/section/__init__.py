@@ -1,6 +1,6 @@
 from typing import Generic, List
 
-from PySide6 import QtCore, QtWidgets
+from PySide6 import QtWidgets
 from PySide6.QtCore import Slot
 from switchbot_client.devices.status import DeviceStatus
 
@@ -12,9 +12,8 @@ class DeviceSection(QtWidgets.QGroupBox, Generic[AnyDevice, AnyDeviceStatus]):
         super().__init__(title=device.device_name)
         layout = QtWidgets.QVBoxLayout()
         self.setLayout(layout)
-        self.valueUpdated = QtCore.Signal(DeviceStatus)
         self.__obj: DeviceStatusObject = DeviceStatusObject(device)
-        self.__obj.valueUpdated.connect(self.update_status)
+        self.__obj.value_changed.connect(self.update_status)
 
     def obj(self) -> DeviceStatusObject[AnyDevice, AnyDeviceStatus]:
         return self.__obj
@@ -25,7 +24,7 @@ class DeviceSection(QtWidgets.QGroupBox, Generic[AnyDevice, AnyDeviceStatus]):
     def add_widget(self, widget: QtWidgets.QWidget):
         self.layout().addWidget(widget)
 
-    def add_widgets(self, *widgets: List[QtWidgets.QWidget]):
+    def add_widgets(self, *widgets: QtWidgets.QWidget):
         for widget in widgets:
             self.layout().addWidget(widget)
 
