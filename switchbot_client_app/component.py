@@ -18,6 +18,16 @@ def gen_command_button(
     return button
 
 
+def gen_refresh_button(status: DeviceStatusObject):
+    button = QtWidgets.QPushButton("refresh status")
+
+    def click():
+        status.update_immediately()
+
+    button.clicked.connect(click)
+    return button
+
+
 def gen_turn_on_off_area(device: SwitchBotDevice, status: DeviceStatusObject):
     layout = QtWidgets.QHBoxLayout()
 

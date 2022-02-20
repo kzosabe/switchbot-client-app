@@ -26,7 +26,6 @@ class DeviceStatusObject(QtCore.QObject, Generic[AnyDevice, AnyDeviceStatus]):
         self._update()
 
     def update(self):
-        # FIXME: wait for execution delay
         timer = QTimer(self)
         timer.setInterval(1000)
         timer.setSingleShot(True)
