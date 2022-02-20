@@ -43,7 +43,9 @@ jobs:
         uses: actions/upload-artifact@v2.3.1
         with:
           name: windows-executable
-          path: dist/switchbot-client-app.exe
+          path: |
+            dist/switchbot-client-app.exe
+            resources/config.yml
 
   mac-build:
     runs-on: macos-latest
@@ -83,7 +85,7 @@ jobs:
         uses: actions/upload-artifact@v2.3.1
         with:
           name: mac-executable
-          path: dist/switchbot-client-app.app
+          path: dist/SwitchBotClientApp.dmg
 
   release:
     needs: [windows-build, mac-build]
@@ -130,6 +132,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./mac-executable/switchbot-client-app.app
+          asset_path: ./mac-executable/SwitchBotClientApp.dmg
           asset_name: SwitchbotClientApp.dmg
           asset_content_type: application/octet-stream

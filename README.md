@@ -8,6 +8,9 @@
 
 An unofficial switchbot client app on Windows and macOS.
 
+This app is **pre-alpha** version and only the minimum functionality has been implemented.  
+There are a lot of room for improvement. Any contributions are welcome!
+
 ## Table of Contents
 
 - [Authentication](#authentication)
@@ -23,23 +26,26 @@ https://github.com/OpenWonderLabs/SwitchBotAPI#authentication
 
 Once you have the token, use one of the following methods to pass the information to the client.
 
-### Config file
-
 If `config.yml` exists in the same directory which app executable is located 
 or `~/.config/switchbot-client/config.yml` exists,  
 this app will get the `token` entry from the file and use the value.
 
+### Place the app and the config file in the same folder
+
 For example, if you are using windows, you can use token 
 if you put file like below into the same directory which switchbot-client-app.exe exists.
-```config.yaml
+```config.yml
 token: your_switchbot_open_token
 ```
+
+### Place the config file in the specific path
 
 If you are using macOS, you can do like below. 
 ```shell
 mkdir -p ~/.config/switchbot-client
 echo "token: your_switchbot_open_token" >>  ~/.config/switchbot-client/config.yml
 ```
+
 
 ## License
 
