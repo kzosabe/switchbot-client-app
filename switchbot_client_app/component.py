@@ -32,10 +32,10 @@ def gen_turn_on_off_area(device: SwitchBotDevice, status: DeviceStatusObject):
     layout = QtWidgets.QHBoxLayout()
 
     def turn_on():
-        return exec_command_and_update(lambda: device.turn_on(), status)
+        return exec_command_and_update(device.turn_on, status)
 
     def turn_off():
-        return exec_command_and_update(lambda: device.turn_off(), status)
+        return exec_command_and_update(device.turn_off, status)
 
     layout.addWidget(gen_command_button(turn_on, "on", status))
     layout.addWidget(gen_command_button(turn_off, "off", status))
