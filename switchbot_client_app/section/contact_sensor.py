@@ -1,7 +1,7 @@
 from switchbot_client.devices import ContactSensor
 from switchbot_client.devices.status import ContactSensorDeviceStatus
 
-from switchbot_client_app.component import gen_label
+from switchbot_client_app.component import gen_label, gen_refresh_button
 from switchbot_client_app.section import DeviceSection
 
 
@@ -11,7 +11,12 @@ class ContactSensorSection(DeviceSection[ContactSensor, ContactSensorDeviceStatu
         self.label_brightness = gen_label()
         self.label_open_state = gen_label()
         self.label_is_move_detected = gen_label()
-        self.add_widgets(self.label_brightness, self.label_open_state, self.label_is_move_detected)
+        self.add_widgets(
+            self.label_brightness,
+            self.label_open_state,
+            self.label_is_move_detected,
+            gen_refresh_button(self.obj()),
+        )
         self.init_status()
 
     def update_status(self):

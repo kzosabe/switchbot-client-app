@@ -1,7 +1,12 @@
 from switchbot_client.devices import Humidifier
 from switchbot_client.devices.status import HumidifierDeviceStatus
 
-from switchbot_client_app.component import gen_button, gen_label, gen_turn_on_off_area
+from switchbot_client_app.component import (
+    gen_button,
+    gen_label,
+    gen_refresh_button,
+    gen_turn_on_off_area,
+)
 from switchbot_client_app.section import DeviceSection
 
 
@@ -31,6 +36,7 @@ class HumidifierSection(DeviceSection[Humidifier, HumidifierDeviceStatus]):
                 device, lambda d: d.set_atomization_efficiency(), "set_atomization_efficiency"
             ),
             gen_button(device, lambda d: d.set_auto_mode(), "set_auto_mode"),
+            gen_refresh_button(self.obj()),
         )
         self.init_status()
 

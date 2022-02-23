@@ -18,7 +18,7 @@ class MyWidget(QWidget):
     def __init__(self):
         super().__init__()
         layout = QVBoxLayout()
-        layout.setContentsMargins(24, 8, 24, 8)
+        layout.setContentsMargins(30, 8, 30, 8)
         self.setLayout(layout)
         print(f"executable path: {os.getcwd()}")
         local_config_path = os.path.join(os.getcwd(), "config.yml")
@@ -45,7 +45,7 @@ def run():
     scroll.setBaseSize(QSize(800, 600))
     scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAsNeeded)
     window.setCentralWidget(scroll)
-    window.resize(QSize(300, 600))
+    window.resize(QSize(400, 600))
     window.show()
     sys.exit(app.exec())
 

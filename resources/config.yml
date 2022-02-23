@@ -1,0 +1,3 @@
+# The first time you start the app, you have to enter the token according to the following procedure.
+# https://github.com/kzosabe/switchbot-client-app#authentication
+token: YOUR_SWITCHBOT_OPEN_TOKEN
