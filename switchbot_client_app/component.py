@@ -1,4 +1,4 @@
-from typing import Callable
+from typing import Callable, Optional
 
 from PySide6 import QtCore, QtWidgets
 from switchbot_client.devices import SwitchBotCommandResult, SwitchBotDevice
@@ -32,12 +32,10 @@ def gen_turn_on_off_area(device: SwitchBotDevice, status: DeviceStatusObject):
     layout = QtWidgets.QHBoxLayout()
 
     def turn_on():
-        response: SwitchBotCommandResult = device.turn_on()
-        return response
+        return exec_command_and_update(lambda: device.turn_on(), status)
 
     def turn_off():
-        response: SwitchBotCommandResult = device.turn_off()
-        return response
+        return exec_command_and_update(lambda: device.turn_off(), status)
 
     layout.addWidget(gen_command_button(turn_on, "on", status))
     layout.addWidget(gen_command_button(turn_off, "off", status))
@@ -63,6 +61,46 @@ def gen_button(
 
     button.clicked.connect(click)
     return button
+
+
+def gen_number_input(
+    device: SwitchBotDevice,
+    min_value: int,
+    max_value: int,
+    default_value: int,
+    callback: Optional[Callable[[SwitchBotDevice, int], SwitchBotCommandResult]],
+    status: DeviceStatusObject,
+):
+    widget = QtWidgets.QSpinBox()
+    widget.setRange(min_value, max_value)
+    widget.setValue(default_value)
+    widget.setSingleStep(1)
+
+    if callback is not None:
+
+        def value_changed():
+            exec_command_and_update(lambda: callback(device, widget.value()), status)
+
+        widget.valueChanged.connect(value_changed)
+
+    return widget
+
+
+def gen_combo_box(
+    device: SwitchBotDevice,
+    callback: Optional[Callable[[SwitchBotDevice, int], SwitchBotCommandResult]],
+    status: DeviceStatusObject,
+):
+    widget = QtWidgets.QComboBox()
+
+    if callback is not None:
+
+        def value_changed():
+            exec_command_and_update(lambda: callback(device, widget.value()), status)
+
+        widget.valueChanged.connect(value_changed)
+
+    return widget
 
 
 def gen_slider(
@@ -121,3 +159,4 @@ def exec_command_and_update(
     response = callback()
     if response.status_code == 100:
         status.update()
+    return response
