@@ -1,4 +1,4 @@
-from typing import Callable, Optional
+from typing import Callable, List, Tuple
 
 from PySide6 import QtCore, QtWidgets
 from switchbot_client.devices import SwitchBotCommandResult, SwitchBotDevice
@@ -32,10 +32,10 @@ def gen_turn_on_off_area(device: SwitchBotDevice, status: DeviceStatusObject):
     layout = QtWidgets.QHBoxLayout()
 
     def turn_on():
-        return exec_command_and_update(lambda: device.turn_on(), status)
+        return exec_command_and_update(device.turn_on, status)
 
     def turn_off():
-        return exec_command_and_update(lambda: device.turn_off(), status)
+        return exec_command_and_update(device.turn_off, status)
 
     layout.addWidget(gen_command_button(turn_on, "on", status))
     layout.addWidget(gen_command_button(turn_off, "off", status))
@@ -61,46 +61,6 @@ def gen_button(
 
     button.clicked.connect(click)
     return button
-
-
-def gen_number_input(
-    device: SwitchBotDevice,
-    min_value: int,
-    max_value: int,
-    default_value: int,
-    callback: Optional[Callable[[SwitchBotDevice, int], SwitchBotCommandResult]],
-    status: DeviceStatusObject,
-):
-    widget = QtWidgets.QSpinBox()
-    widget.setRange(min_value, max_value)
-    widget.setValue(default_value)
-    widget.setSingleStep(1)
-
-    if callback is not None:
-
-        def value_changed():
-            exec_command_and_update(lambda: callback(device, widget.value()), status)
-
-        widget.valueChanged.connect(value_changed)
-
-    return widget
-
-
-def gen_combo_box(
-    device: SwitchBotDevice,
-    callback: Optional[Callable[[SwitchBotDevice, int], SwitchBotCommandResult]],
-    status: DeviceStatusObject,
-):
-    widget = QtWidgets.QComboBox()
-
-    if callback is not None:
-
-        def value_changed():
-            exec_command_and_update(lambda: callback(device, widget.value()), status)
-
-        widget.valueChanged.connect(value_changed)
-
-    return widget
 
 
 def gen_slider(
@@ -160,3 +120,67 @@ def exec_command_and_update(
     if response.status_code == 100:
         status.update()
     return response
+
+
+class ComboBox(QtWidgets.QGroupBox):
+    def __init__(self, label: str, items: List[Tuple[str, int]]):
+        super().__init__()
+        self.label = QtWidgets.QLabel()
+        self.widget = QtWidgets.QComboBox()
+        self.label.setText(label)
+        for i in items:
+            self.widget.addItem(i[0], i[1])
+        layout = QtWidgets.QHBoxLayout()
+        layout.addWidget(self.label)
+        layout.addWidget(self.widget)
+        self.setLayout(layout)
+
+    def connect_value_changed(self, callback: Callable):
+        self.widget.currentTextChanged.connect(callback)
+
+    def value(self):
+        return self.widget.currentData()
+
+
+class FloatInput(QtWidgets.QGroupBox):
+    def __init__(
+        self,
+        label: str,
+        min_value: float,
+        max_value: float,
+        default_value: float,
+        singlestep: float,
+    ):
+        super().__init__()
+        self.label = QtWidgets.QLabel()
+        self.widget = QtWidgets.QDoubleSpinBox()
+        self.label.setText(label)
+        self.widget.setSingleStep(singlestep)
+        self.widget.setDecimals(1)
+        self.widget.setRange(min_value, max_value)
+        self.widget.setValue(default_value)
+        layout = QtWidgets.QHBoxLayout()
+        layout.addWidget(self.label)
+        layout.addWidget(self.widget)
+        self.setLayout(layout)
+
+    def connect_value_changed(self, callback: Callable):
+        self.widget.valueChanged.connect(callback)
+
+    def value(self) -> float:
+        return self.widget.value()
+
+
+class CenterLabel(QtWidgets.QLabel):
+    def __init__(self, text: str):
+        super().__init__()
+        self.setText(text)
+        self.setAlignment(QtCore.Qt.AlignCenter)  # type: ignore
+
+
+class CommandButton(QtWidgets.QPushButton):
+    def __init__(
+        self, text: str, callback: Callable[[], SwitchBotCommandResult], status: DeviceStatusObject
+    ):
+        super().__init__(text)
+        self.clicked.connect(lambda: exec_command_and_update(callback, status))
