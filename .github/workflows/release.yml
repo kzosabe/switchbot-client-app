@@ -39,13 +39,15 @@ jobs:
       - name: build
         run: poetry run pyinstaller --onefile --name="switchbot-client-app" --windowed switchbot_client_app/main.py
 
+      - name: Zip
+        run: zip --junk-paths windows-executable ./switchbot-client-app.exe resources/config.yml
+
       - name: upload
         uses: actions/upload-artifact@v2.3.1
         with:
           name: windows-executable
           path: |
-            dist/switchbot-client-app.exe
-            resources/config.yml
+            windows-executable.zip
 
   mac-build:
     runs-on: macos-latest
