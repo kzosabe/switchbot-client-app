@@ -15,8 +15,7 @@ class Slider(QtWidgets.QSlider):
         callback: Callable[[SwitchBotDevice, int], SwitchBotCommandResult],
         status: DeviceStatusObject,
     ):
-        super().__init__()
-
+        super().__init__(orientation=QtCore.Qt.Orientation.Horizontal)
         self.setRange(min_value, max_value)
         self.setSingleStep(1)
 
@@ -98,9 +97,6 @@ class ComboBox(QtWidgets.QGroupBox):
         layout.addWidget(self.widget)
         self.setLayout(layout)
 
-    def connect_value_changed(self, callback: Callable):
-        self.widget.currentTextChanged.connect(callback)
-
     def value(self):
         return self.widget.currentData()
 
@@ -126,9 +122,6 @@ class FloatInput(QtWidgets.QGroupBox):
         layout.addWidget(self.label)
         layout.addWidget(self.widget)
         self.setLayout(layout)
-
-    def connect_value_changed(self, callback: Callable):
-        self.widget.valueChanged.connect(callback)
 
     def value(self) -> float:
         return self.widget.value()
