@@ -1,17 +1,17 @@
 from switchbot_client.devices import Light
 from switchbot_client.devices.status import PseudoRemoteDeviceStatus
 
-from switchbot_client_app.component import gen_label, gen_turn_on_off_area
+from switchbot_client_app.component import Label, TurnOnOffArea
 from switchbot_client_app.section import DeviceSection
 
 
 class LightSection(DeviceSection[Light, PseudoRemoteDeviceStatus]):
     def __init__(self, device: Light):
         super().__init__(device)
-        self.label_power = gen_label()
+        self.label_power = Label()
         self.add_widgets(
             self.label_power,
-            gen_turn_on_off_area(device, self.obj()),
+            TurnOnOffArea(device, self.obj()),
         )
         self.init_status()
 
