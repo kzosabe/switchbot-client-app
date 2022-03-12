@@ -1,15 +1,15 @@
 from switchbot_client.devices import MotionSensor
 from switchbot_client.devices.status import MotionSensorDeviceStatus
 
-from switchbot_client_app.component import RefreshButton, gen_label
+from switchbot_client_app.component import RefreshButton, Label
 from switchbot_client_app.section import DeviceSection
 
 
 class MotionSensorSection(DeviceSection[MotionSensor, MotionSensorDeviceStatus]):
     def __init__(self, device: MotionSensor):
         super().__init__(device)
-        self.label_brightness = gen_label()
-        self.label_is_move_detected = gen_label()
+        self.label_brightness = Label()
+        self.label_is_move_detected = Label()
         self.add_widgets(
             self.label_brightness, self.label_is_move_detected, RefreshButton(self.obj())
         )

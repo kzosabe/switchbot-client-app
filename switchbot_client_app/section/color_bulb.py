@@ -4,9 +4,8 @@ from switchbot_client.devices.status import ColorBulbDeviceStatus
 from switchbot_client_app.component import (
     ColorSlider,
     RefreshButton,
-    gen_label,
     gen_slider,
-    gen_turn_on_off_area,
+    gen_turn_on_off_area, Label,
 )
 from switchbot_client_app.section import DeviceSection
 
@@ -14,13 +13,13 @@ from switchbot_client_app.section import DeviceSection
 class ColorBulbSection(DeviceSection[ColorBulb, ColorBulbDeviceStatus]):
     def __init__(self, device: ColorBulb):
         super().__init__(device)
-        self.label_power = gen_label()
-        self.label_brightness = gen_label()
-        self.label_color_hex = gen_label()
+        self.label_power = Label()
+        self.label_brightness = Label()
+        self.label_color_hex = Label()
         self.slider_brightness = gen_slider(
             device, 1, 100, lambda d, value: d.set_brightness(value), self.obj()
         )
-        self.label_color_temperature = gen_label()
+        self.label_color_temperature = Label()
         self.slider_color_hex = ColorSlider(
             device, lambda d, r, g, b: d.set_color_by_number(r, g, b), self.obj()
         )

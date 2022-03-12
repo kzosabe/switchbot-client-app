@@ -4,7 +4,7 @@ from switchbot_client.devices.status import SmartFanDeviceStatus
 from switchbot_client_app.component import (
     RefreshButton,
     gen_button,
-    gen_label,
+    Label,
     gen_slider,
     gen_turn_on_off_area,
 )
@@ -14,11 +14,11 @@ from switchbot_client_app.section import DeviceSection
 class SmartFanSection(DeviceSection[SmartFan, SmartFanDeviceStatus]):
     def __init__(self, device: SmartFan):
         super().__init__(device)
-        self.label_mode = gen_label()
-        self.label_speed = gen_label()
-        self.label_shake_range = gen_label()
-        self.label_shake_center = gen_label()
-        self.label_is_shaking = gen_label()
+        self.label_mode = Label()
+        self.label_speed = Label()
+        self.label_shake_range = Label()
+        self.label_shake_center = Label()
+        self.label_is_shaking = Label()
         self.add_widgets(
             gen_turn_on_off_area(device, self.obj()),
             self.label_mode,

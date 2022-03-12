@@ -4,8 +4,7 @@ from switchbot_client.devices.status import BotDeviceStatus
 from switchbot_client_app.component import (
     CommandButton,
     RefreshButton,
-    gen_label,
-    gen_turn_on_off_area,
+    gen_turn_on_off_area, Label,
 )
 from switchbot_client_app.section import DeviceSection
 
@@ -13,7 +12,7 @@ from switchbot_client_app.section import DeviceSection
 class BotSection(DeviceSection[Bot, BotDeviceStatus]):
     def __init__(self, device: Bot):
         super().__init__(device)
-        self.label_power = gen_label()
+        self.label_power = Label()
         self.add_widgets(
             self.label_power,
             gen_turn_on_off_area(device, self.obj()),

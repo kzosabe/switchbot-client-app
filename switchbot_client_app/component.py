@@ -22,13 +22,6 @@ def gen_turn_on_off_area(device: SwitchBotDevice, status: DeviceStatusObject):
     return box
 
 
-def gen_label(label_str: str = ""):
-    label = QtWidgets.QLabel()
-    label.setText(label_str)
-    label.setAlignment(QtCore.Qt.AlignCenter)  # type: ignore
-    return label
-
-
 def gen_button(
     device: SwitchBotDevice, callback: Callable[[SwitchBotDevice], None], command_name: str
 ):
@@ -187,3 +180,10 @@ class RefreshButton(QtWidgets.QPushButton):
         text = "refresh status"
         super().__init__(text)
         self.clicked.connect(lambda: status.update_immediately())
+
+
+class Label(QtWidgets.QLabel):
+    def __init__(self, text: str = ""):
+        super().__init__()
+        self.setText(text)
+        self.setAlignment(QtCore.Qt.AlignCenter)  # type: ignore
