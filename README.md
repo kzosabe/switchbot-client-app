@@ -1,8 +1,5 @@
 # switchbot-client-app
 
-[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/switchbot-client-app.svg)](https://pypi.org/project/switchbot-client-app/)
-[![PyPI - Library Version](https://img.shields.io/pypi/v/switchbot-client-app.svg)](https://pypi.org/project/switchbot-client-app/)
-[![PyPI - Downloads](https://img.shields.io/pypi/dm/switchbot-client-app)](https://pypi.org/project/switchbot-client-app)
 [![License](https://img.shields.io/badge/license-MIT%2FApache--2.0-informational?style=flat-square)](README.md#License)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
@@ -10,11 +7,6 @@ An unofficial switchbot client app on Windows PC and macOS.
 
 This app is **pre-alpha** version and only the minimum functionality has been implemented.  
 There are a lot of room for improvement. Any contributions are welcome!
-
-## Table of Contents
-
-- [Authentication](#authentication)
-- [License](#license)
 
 
 ## Authentication
@@ -42,7 +34,7 @@ token: your_switchbot_open_token
 
 ### Place the config file in the specific path
 
-If you are using macOS, you can do like below. 
+If you are using macOS, you can set token like below. 
 ```shell
 mkdir -p ~/.config/switchbot-client
 echo "token: your_switchbot_open_token" >>  ~/.config/switchbot-client/config.yml
@@ -50,7 +42,7 @@ echo "token: your_switchbot_open_token" >>  ~/.config/switchbot-client/config.ym
 
 ## For developers
 
-You can use the scripts in the scripts/ directory to build and debug.
+You can use the scripts in the scripts directory to build and debug this application.
 
 - fix.sh: automatically modify code styles by black
 - test.sh: run tests and lints

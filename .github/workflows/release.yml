@@ -113,9 +113,6 @@ jobs:
           draft: false
           prerelease: false
 
-      - name: ls
-        run: ls -al && pwd && ls -al dist
-
       - name: Zip
         run: zip --junk-paths windows-executable ./dist/switchbot-client-app.exe ./resources/config.yml
 
