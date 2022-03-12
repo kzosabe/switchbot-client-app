@@ -4,8 +4,8 @@ from switchbot_client.devices import Plug, PlugMiniJp, PlugMiniUs
 from switchbot_client.devices.status import PlugDeviceStatus
 
 from switchbot_client_app.component import (
+    RefreshButton,
     gen_label,
-    gen_refresh_button,
     gen_turn_on_off_area,
 )
 from switchbot_client_app.section import DeviceSection
@@ -20,7 +20,7 @@ class PlugSection(DeviceSection[PlugLike, PlugDeviceStatus]):
         self.add_widgets(
             self.label_power,
             gen_turn_on_off_area(device, self.obj()),
-            gen_refresh_button(self.obj()),
+            RefreshButton(self.obj()),
         )
         self.init_status()
 
