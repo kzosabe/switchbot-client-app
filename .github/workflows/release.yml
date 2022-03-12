@@ -114,10 +114,10 @@ jobs:
           prerelease: false
 
       - name: ls
-        run: ls -al && pwd
+        run: ls -al && pwd && ls -al dist
 
       - name: Zip
-        run: zip --junk-paths windows-executable ./switchbot-client-app.exe
+        run: zip --junk-paths windows-executable ./dist/switchbot-client-app.exe ./resources/config.yml
 
       - name: Append Binary
         uses: actions/upload-release-asset@v1
