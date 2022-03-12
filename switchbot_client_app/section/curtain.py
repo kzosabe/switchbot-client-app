@@ -2,9 +2,9 @@ from switchbot_client.devices import Curtain
 from switchbot_client.devices.status import CurtainDeviceStatus
 
 from switchbot_client_app.component import (
-    RefreshButton,
     Label,
-    gen_slider,
+    RefreshButton,
+    Slider,
     gen_turn_on_off_area,
 )
 from switchbot_client_app.section import DeviceSection
@@ -20,7 +20,7 @@ class CurtainSection(DeviceSection[Curtain, CurtainDeviceStatus]):
         self.add_widgets(
             gen_turn_on_off_area(device, self.obj()),
             self.label_slide_position,
-            gen_slider(device, 1, 100, lambda d, value: d.set_position(value), self),
+            Slider(device, 1, 100, lambda d, value: d.set_position(value), self),
             self.label_is_calibrated,
             self.label_is_grouped,
             self.label_is_moving,

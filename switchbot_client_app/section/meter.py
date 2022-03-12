@@ -3,7 +3,7 @@ from typing import Union
 from switchbot_client.devices import Meter, MeterPlusJp, MeterPlusUs
 from switchbot_client.devices.status import MeterDeviceStatus
 
-from switchbot_client_app.component import RefreshButton, Label
+from switchbot_client_app.component import Label, RefreshButton
 from switchbot_client_app.section import DeviceSection
 
 MeterLike = Union[Meter, MeterPlusJp, MeterPlusUs]

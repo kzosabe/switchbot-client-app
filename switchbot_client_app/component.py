@@ -34,22 +34,24 @@ def gen_button(
     return button
 
 
-def gen_slider(
-    device: SwitchBotDevice,
-    min_value: int,
-    max_value: int,
-    callback: Callable[[SwitchBotDevice, int], SwitchBotCommandResult],
-    status: DeviceStatusObject,
-):
-    slider = QtWidgets.QSlider(orientation=QtCore.Qt.Orientation.Horizontal)
-    slider.setRange(min_value, max_value)
-    slider.setSingleStep(1)
+class Slider(QtWidgets.QSlider):
+    def __init__(
+        self,
+        device: SwitchBotDevice,
+        min_value: int,
+        max_value: int,
+        callback: Callable[[SwitchBotDevice, int], SwitchBotCommandResult],
+        status: DeviceStatusObject,
+    ):
+        super().__init__()
 
-    def value_changed():
-        exec_command_and_update(lambda: callback(device, slider.value()), status)
+        self.setRange(min_value, max_value)
+        self.setSingleStep(1)
 
-    slider.sliderReleased.connect(value_changed)
-    return slider
+        def value_changed():
+            exec_command_and_update(lambda: callback(device, self.value()), status)
+
+        self.sliderReleased.connect(value_changed)
 
 
 class ColorSlider(QtWidgets.QGroupBox):

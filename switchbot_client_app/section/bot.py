@@ -3,8 +3,9 @@ from switchbot_client.devices.status import BotDeviceStatus
 
 from switchbot_client_app.component import (
     CommandButton,
+    Label,
     RefreshButton,
-    gen_turn_on_off_area, Label,
+    gen_turn_on_off_area,
 )
 from switchbot_client_app.section import DeviceSection
 

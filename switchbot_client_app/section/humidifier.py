@@ -2,9 +2,9 @@ from switchbot_client.devices import Humidifier
 from switchbot_client.devices.status import HumidifierDeviceStatus
 
 from switchbot_client_app.component import (
+    Label,
     RefreshButton,
     gen_button,
-    Label,
     gen_turn_on_off_area,
 )
 from switchbot_client_app.section import DeviceSection

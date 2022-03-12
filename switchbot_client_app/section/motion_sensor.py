@@ -1,7 +1,7 @@
 from switchbot_client.devices import MotionSensor
 from switchbot_client.devices.status import MotionSensorDeviceStatus
 
-from switchbot_client_app.component import RefreshButton, Label
+from switchbot_client_app.component import Label, RefreshButton
 from switchbot_client_app.section import DeviceSection
 
 
