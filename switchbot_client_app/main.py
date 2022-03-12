@@ -11,6 +11,7 @@ from PySide6.QtWidgets import (
 )
 from switchbot_client import SwitchBotClient
 
+from switchbot_client_app.constants import APP_VERSION
 from switchbot_client_app.factory import gen_section
 
 
@@ -18,7 +19,6 @@ class MyWidget(QWidget):
     def __init__(self):
         super().__init__()
         layout = QVBoxLayout()
-        layout.setContentsMargins(30, 8, 30, 8)
         self.setLayout(layout)
         print(f"executable path: {os.getcwd()}")
         local_config_path = os.path.join(os.getcwd(), "config.yml")
@@ -44,7 +44,9 @@ def run():
     scroll.setWidgetResizable(True)
     scroll.setBaseSize(QSize(800, 600))
     scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAsNeeded)
+    widget.setContentsMargins(32, 8, 32, 8)
     window.setCentralWidget(scroll)
+    window.setWindowTitle(f"switchbot-client-app v{APP_VERSION}")
     window.resize(QSize(400, 600))
     window.show()
     sys.exit(app.exec())
