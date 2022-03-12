@@ -6,34 +6,6 @@ from switchbot_client.devices import SwitchBotCommandResult, SwitchBotDevice
 from switchbot_client_app.object import DeviceStatusObject
 
 
-def gen_turn_on_off_area(device: SwitchBotDevice, status: DeviceStatusObject):
-    layout = QtWidgets.QHBoxLayout()
-
-    def turn_on():
-        return exec_command_and_update(device.turn_on, status)
-
-    def turn_off():
-        return exec_command_and_update(device.turn_off, status)
-
-    layout.addWidget(CommandButton("on", turn_on, status))
-    layout.addWidget(CommandButton("off", turn_off, status))
-    box = QtWidgets.QGroupBox()
-    box.setLayout(layout)
-    return box
-
-
-def gen_button(
-    device: SwitchBotDevice, callback: Callable[[SwitchBotDevice], None], command_name: str
-):
-    button = QtWidgets.QPushButton(f"{command_name}")
-
-    def click():
-        callback(device)
-
-    button.clicked.connect(click)
-    return button
-
-
 class Slider(QtWidgets.QSlider):
     def __init__(
         self,
@@ -181,7 +153,19 @@ class RefreshButton(QtWidgets.QPushButton):
     def __init__(self, status: DeviceStatusObject):
         text = "refresh status"
         super().__init__(text)
-        self.clicked.connect(lambda: status.update_immediately())
+        self.clicked.connect(status.update_immediately)
+
+
+class Button(QtWidgets.QPushButton):
+    def __init__(
+        self, device: SwitchBotDevice, callback: Callable[[SwitchBotDevice], None], text: str
+    ):
+        super().__init__(text)
+
+        def click():
+            callback(device)
+
+        self.clicked.connect(click)
 
 
 class Label(QtWidgets.QLabel):
@@ -189,3 +173,19 @@ class Label(QtWidgets.QLabel):
         super().__init__()
         self.setText(text)
         self.setAlignment(QtCore.Qt.AlignCenter)  # type: ignore
+
+
+class TurnOnOffArea(QtWidgets.QGroupBox):
+    def __init__(self, device: SwitchBotDevice, status: DeviceStatusObject):
+        super().__init__()
+        layout = QtWidgets.QHBoxLayout()
+
+        def turn_on():
+            return exec_command_and_update(device.turn_on, status)
+
+        def turn_off():
+            return exec_command_and_update(device.turn_off, status)
+
+        layout.addWidget(CommandButton("on", turn_on, status))
+        layout.addWidget(CommandButton("off", turn_off, status))
+        self.setLayout(layout)

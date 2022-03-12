@@ -6,7 +6,7 @@ from switchbot_client_app.component import (
     Label,
     RefreshButton,
     Slider,
-    gen_turn_on_off_area,
+    TurnOnOffArea,
 )
 from switchbot_client_app.section import DeviceSection
 
@@ -29,7 +29,7 @@ class ColorBulbSection(DeviceSection[ColorBulb, ColorBulbDeviceStatus]):
         )
         self.add_widgets(
             self.label_power,
-            gen_turn_on_off_area(device, self.obj()),
+            TurnOnOffArea(device, self.obj()),
             self.label_brightness,
             self.slider_brightness,
             self.label_color_hex,
