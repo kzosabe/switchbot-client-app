@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "switchbot-client-app"
-version = "0.0.3"
+version = "0.0.4"
 description = "A SwitchBot desktop app interface for PC / Mac."
 license = "Apache-2.0 or MIT"
 authors = [
