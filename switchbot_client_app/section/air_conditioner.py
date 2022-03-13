@@ -16,7 +16,7 @@ class AirConditionerSection(DeviceSection[AirConditioner, PseudoRemoteDeviceStat
         self.label_power = CenterLabel("power:")
 
         self.temperature_input = FloatInput(
-            label="temperature", min_value=10, max_value=50, default_value=25, singlestep=0.5
+            label="temperature", min_value=10, max_value=50, default_value=25, single_step=0.5
         )
 
         self.mode_input = ComboBox(
