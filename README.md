@@ -5,7 +5,7 @@
 
 An unofficial switchbot client app for Windows PC and macOS.
 
-![screenshots-01](./docs/static/ss-readme-01.png)
+<img src="./docs/static/ss-readme-01.png" width=300>
 
 This app is **pre-alpha** version and only the minimum functionality has been implemented.  
 There are a lot of room for improvement. Any contributions are welcome!
