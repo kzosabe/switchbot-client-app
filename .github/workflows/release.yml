@@ -114,7 +114,7 @@ jobs:
           prerelease: false
 
       - name: Zip
-        run: zip --junk-paths windows-executable ./dist/switchbot-client-app.exe ./resources/config.yml
+        run: zip switchbot-client-app ./dist/switchbot-client-app.exe ./resources/windows/*
 
       - name: Append Binary
         uses: actions/upload-release-asset@v1

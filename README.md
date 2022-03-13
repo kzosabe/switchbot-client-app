@@ -3,11 +3,12 @@
 [![License](https://img.shields.io/badge/license-MIT%2FApache--2.0-informational?style=flat-square)](README.md#License)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
-An unofficial switchbot client app on Windows PC and macOS.
+An unofficial switchbot client app for Windows PC and macOS.
+
+![screenshots-01](./docs/static/ss-readme-01.png)
 
 This app is **pre-alpha** version and only the minimum functionality has been implemented.  
 There are a lot of room for improvement. Any contributions are welcome!
-
 
 ## Authentication
 
@@ -39,6 +40,15 @@ If you are using macOS, you can set token like below.
 mkdir -p ~/.config/switchbot-client
 echo "token: your_switchbot_open_token" >>  ~/.config/switchbot-client/config.yml
 ```
+
+## Usage
+
+If you have completed the authentication process described above, 
+the device associated with the token will automatically appear in the application.
+
+Currently, the number of API calls is limited to 10000 times per day.  
+Therefore, it may stop working if you try to operate it more than this number of times.
+
 
 ## For developers
 

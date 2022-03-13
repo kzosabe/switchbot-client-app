@@ -75,15 +75,6 @@ class ColorSlider(QtWidgets.QGroupBox):
         ]
 
 
-def exec_command_and_update(
-    callback: Callable[[], SwitchBotCommandResult], status: DeviceStatusObject
-):
-    response = callback()
-    if response.status_code == 100:
-        status.update()
-    return response
-
-
 class ComboBox(QtWidgets.QGroupBox):
     def __init__(self, label: str, items: List[Tuple[str, int]]):
         super().__init__()
@@ -108,13 +99,13 @@ class FloatInput(QtWidgets.QGroupBox):
         min_value: float,
         max_value: float,
         default_value: float,
-        singlestep: float,
+        single_step: float,
     ):
         super().__init__()
         self.label = QtWidgets.QLabel()
         self.widget = QtWidgets.QDoubleSpinBox()
         self.label.setText(label)
-        self.widget.setSingleStep(singlestep)
+        self.widget.setSingleStep(single_step)
         self.widget.setDecimals(1)
         self.widget.setRange(min_value, max_value)
         self.widget.setValue(default_value)
@@ -182,3 +173,12 @@ class TurnOnOffArea(QtWidgets.QGroupBox):
         layout.addWidget(CommandButton("on", turn_on, status))
         layout.addWidget(CommandButton("off", turn_off, status))
         self.setLayout(layout)
+
+
+def exec_command_and_update(
+    callback: Callable[[], SwitchBotCommandResult], status: DeviceStatusObject
+):
+    response = callback()
+    if response.status_code == 100:
+        status.update()
+    return response
