@@ -3,7 +3,7 @@
 [![License](https://img.shields.io/badge/license-MIT%2FApache--2.0-informational?style=flat-square)](README.md#License)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
-An unofficial switchbot client app on Windows PC and macOS.
+An unofficial switchbot client app for Windows PC and macOS.
 
 This app is **pre-alpha** version and only the minimum functionality has been implemented.  
 There are a lot of room for improvement. Any contributions are welcome!
