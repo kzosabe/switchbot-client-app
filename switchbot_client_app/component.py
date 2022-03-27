@@ -1,4 +1,4 @@
-from typing import Callable, List, Tuple
+from typing import Callable, List, Tuple, Union
 
 from PySide6 import QtCore, QtWidgets
 from switchbot_client.devices import SwitchBotCommandResult, SwitchBotDevice
@@ -76,7 +76,7 @@ class ColorSlider(QtWidgets.QGroupBox):
 
 
 class ComboBox(QtWidgets.QGroupBox):
-    def __init__(self, label: str, items: List[Tuple[str, int]]):
+    def __init__(self, label: str, items: List[Tuple[str, Union[int, str]]]):
         super().__init__()
         self.label = QtWidgets.QLabel()
         self.widget = QtWidgets.QComboBox()
@@ -87,6 +87,9 @@ class ComboBox(QtWidgets.QGroupBox):
         layout.addWidget(self.label)
         layout.addWidget(self.widget)
         self.setLayout(layout)
+
+    def current_index_changed(self):
+        return self.widget.currentIndexChanged
 
     def value(self):
         return self.widget.currentData()
