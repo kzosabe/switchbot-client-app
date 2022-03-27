@@ -1,7 +1,13 @@
 from switchbot_client.devices import Humidifier
 from switchbot_client.devices.status import HumidifierDeviceStatus
 
-from switchbot_client_app.component import Button, Label, RefreshButton, TurnOnOffArea
+from switchbot_client_app.component import (
+    ComboBox,
+    Label,
+    RefreshButton,
+    Slider,
+    TurnOnOffArea,
+)
 from switchbot_client_app.section import DeviceSection
 
 
@@ -16,6 +22,21 @@ class HumidifierSection(DeviceSection[Humidifier, HumidifierDeviceStatus]):
         self.label_is_child_lock = Label()
         self.label_is_muted = Label()
         self.label_is_lack_water = Label()
+        self.mode_input = ComboBox(
+            label="mode",
+            items=[
+                ("Auto", "auto"),
+                ("Low", "101"),
+                ("Medium", "102"),
+                ("High", "103"),
+            ],
+        )
+        self.mode_input.current_index_changed().connect(
+            lambda i: device.set_mode(self.mode_input.value())
+        )
+        self.atomization_efficiency_slider = Slider(
+            device, 0, 100, lambda d, value: d.set_atomization_efficiency(value), self.obj()
+        )
         self.add_widgets(
             self.label_power,
             self.label_temperature,
@@ -26,9 +47,8 @@ class HumidifierSection(DeviceSection[Humidifier, HumidifierDeviceStatus]):
             self.label_is_muted,
             self.label_is_lack_water,
             TurnOnOffArea(device, self.obj()),
-            Button(device, lambda d: d.set_mode(), "set_mode"),
-            Button(device, lambda d: d.set_atomization_efficiency(), "set_atomization_efficiency"),
-            Button(device, lambda d: d.set_auto_mode(), "set_auto_mode"),
+            self.mode_input,
+            self.atomization_efficiency_slider,
             RefreshButton(self.obj()),
         )
         self.init_status()
