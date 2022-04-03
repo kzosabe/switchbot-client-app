@@ -93,12 +93,12 @@ jobs:
 
     steps:
       - name: Download Windows App
-        uses: actions/download-artifact@v2.1.0
+        uses: actions/download-artifact@v3
         with:
           name: windows-executable
 
       - name: Download Mac App
-        uses: actions/download-artifact@v2.1.0
+        uses: actions/download-artifact@v3
         with:
           name: mac-executable
 
