@@ -35,7 +35,7 @@ pytest-cov = "^3.0"
 pytest-mock = "^3.0"
 pyinstaller = "^4.10"
 tox = "^3.25.0"
-mypy = "^0.942"
+mypy = "^0.950"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
