@@ -34,7 +34,7 @@ pytest = "^7.1"
 pytest-cov = "^3.0"
 pytest-mock = "^3.0"
 pyinstaller = "^4.10"
-tox = "^3.24.5"
+tox = "^3.25.0"
 mypy = "^0.942"
 
 [build-system]
