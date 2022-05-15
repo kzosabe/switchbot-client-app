@@ -33,7 +33,7 @@ pylint = "^2.13"
 pytest = "^7.1"
 pytest-cov = "^3.0"
 pytest-mock = "^3.0"
-pyinstaller = "^4.10"
+pyinstaller = "^5.0"
 tox = "^3.25.0"
 mypy = "^0.950"
 
