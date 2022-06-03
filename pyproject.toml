@@ -29,7 +29,7 @@ PySide6 = "~6.2.2"
 
 [tool.poetry.dev-dependencies]
 black = ">=18.5b1"
-pylint = "^2.13"
+pylint = "^2.14"
 pytest = "^7.1"
 pytest-cov = "^3.0"
 pytest-mock = "^3.0"
