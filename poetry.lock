@@ -16,6 +16,7 @@ python-versions = ">=3.6.2"
 
 [package.dependencies]
 lazy-object-proxy = ">=1.4.0"
+setuptools = ">=20.0"
 typing-extensions = {version = ">=3.10", markers = "python_version < \"3.10\""}
 wrapt = ">=1.11,<2"
 
@@ -258,7 +259,7 @@ python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,>=2.7"
 
 [[package]]
 name = "pefile"
-version = "2021.9.3"
+version = "2022.5.30"
 description = "Python PE parsing module"
 category = "dev"
 optional = false
@@ -301,7 +302,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
 [[package]]
 name = "pyinstaller"
-version = "5.1"
+version = "5.3"
 description = "PyInstaller bundles a Python application and all its dependencies into a single package."
 category = "dev"
 optional = false
@@ -310,9 +311,10 @@ python-versions = "<3.11,>=3.7"
 [package.dependencies]
 altgraph = "*"
 macholib = {version = ">=1.8", markers = "sys_platform == \"darwin\""}
-pefile = {version = ">=2017.8.1", markers = "sys_platform == \"win32\""}
+pefile = {version = ">=2022.5.30", markers = "sys_platform == \"win32\""}
 pyinstaller-hooks-contrib = ">=2021.4"
 pywin32-ctypes = {version = ">=0.2.0", markers = "sys_platform == \"win32\""}
+setuptools = "*"
 
 [package.extras]
 encryption = ["tinyaes (>=1.0.0)"]
@@ -456,6 +458,19 @@ socks = ["PySocks (>=1.5.6,!=1.5.7)", "win-inet-pton"]
 use_chardet_on_py3 = ["chardet (>=3.0.2,<5)"]
 
 [[package]]
+name = "setuptools"
+version = "65.3.0"
+description = "Easily download, build, install, upgrade, and uninstall Python packages"
+category = "dev"
+optional = false
+python-versions = ">=3.7"
+
+[package.extras]
+docs = ["furo", "jaraco.packaging (>=9)", "jaraco.tidelift (>=1.4)", "pygments-github-lexers (==0.0.5)", "rst.linker (>=1.9)", "sphinx", "sphinx-favicon", "sphinx-hoverxref (<2)", "sphinx-inline-tabs", "sphinx-notfound-page (==0.8.3)", "sphinx-reredirects", "sphinxcontrib-towncrier"]
+testing = ["build[virtualenv]", "filelock (>=3.4.0)", "flake8 (<5)", "flake8-2020", "ini2toml[lite] (>=0.9)", "jaraco.envs (>=2.2)", "jaraco.path (>=3.2.0)", "mock", "pip (>=19.1)", "pip-run (>=8.8)", "pytest (>=6)", "pytest-black (>=0.3.7)", "pytest-checkdocs (>=2.4)", "pytest-cov", "pytest-enabler (>=1.3)", "pytest-flake8", "pytest-mypy (>=0.9.1)", "pytest-perf", "pytest-xdist", "tomli-w (>=1.0.0)", "virtualenv (>=13.0.0)", "wheel"]
+testing-integration = ["build[virtualenv]", "filelock (>=3.4.0)", "jaraco.envs (>=2.2)", "jaraco.path (>=3.2.0)", "pytest", "pytest-enabler", "pytest-xdist", "tomli", "virtualenv (>=13.0.0)", "wheel"]
+
+[[package]]
 name = "shiboken6"
 version = "6.2.3"
 description = "Python / C++ bindings helper module"
@@ -580,7 +595,7 @@ python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,>=2.7"
 [metadata]
 lock-version = "1.1"
 python-versions = "3.9.10"
-content-hash = "1337bd56b081bebe39d873ff16d1095e3eb2459aeda8570220de9168d9dc5328"
+content-hash = "fa4467cbe6ad04282d7ab96d4d6549b1c122f34792145e66bc7dc7e7bf1b4d1f"
 
 [metadata.files]
 altgraph = [
@@ -804,7 +819,7 @@ pathspec = [
     {file = "pathspec-0.9.0.tar.gz", hash = "sha256:e564499435a2673d586f6b2130bb5b95f04a3ba06f81b8f895b651a3c76aabb1"},
 ]
 pefile = [
-    {file = "pefile-2021.9.3.tar.gz", hash = "sha256:344a49e40a94e10849f0fe34dddc80f773a12b40675bf2f7be4b8be578bdd94a"},
+    {file = "pefile-2022.5.30.tar.gz", hash = "sha256:a5488a3dd1fd021ce33f969780b88fe0f7eebb76eb20996d7318f307612a045b"},
 ]
 platformdirs = [
     {file = "platformdirs-2.5.0-py3-none-any.whl", hash = "sha256:30671902352e97b1eafd74ade8e4a694782bd3471685e78c32d0fdfd3aa7e7bb"},
@@ -819,17 +834,17 @@ py = [
     {file = "py-1.11.0.tar.gz", hash = "sha256:51c75c4126074b472f746a24399ad32f6053d1b34b68d2fa41e558e6f4a98719"},
 ]
 pyinstaller = [
-    {file = "pyinstaller-5.1-py3-none-macosx_10_13_universal2.whl", hash = "sha256:3c9bc373b4a4bf6d81b306b9918e290a3de582d7b50a0f6f4e837970a4db0c54"},
-    {file = "pyinstaller-5.1-py3-none-manylinux2014_aarch64.whl", hash = "sha256:ac003d49bbd62f6712b5631487049cee4f0a07445dd31c6d05e5724e33689fca"},
-    {file = "pyinstaller-5.1-py3-none-manylinux2014_i686.whl", hash = "sha256:f786cb013ebfd3fb23ddb46285902663e31256220b12b368f8c36e859a77ebc9"},
-    {file = "pyinstaller-5.1-py3-none-manylinux2014_ppc64le.whl", hash = "sha256:d8bfe5c32b4b5aaa91a5c1c7912fe3e5d13e7671f3468ee7742ec71ca192a975"},
-    {file = "pyinstaller-5.1-py3-none-manylinux2014_s390x.whl", hash = "sha256:c421b46ebf81ad4498de480640ce1a47ac15dfd3938dfc2e1c0846cb5cdb0c59"},
-    {file = "pyinstaller-5.1-py3-none-manylinux2014_x86_64.whl", hash = "sha256:588f2840c27a8a7e1b1fa361f107a1060c5096b36d3c94c243b23687ee41609d"},
-    {file = "pyinstaller-5.1-py3-none-musllinux_1_1_aarch64.whl", hash = "sha256:d3852c1f8fe6ca2f5c7942c845dc6d1f6140aa7860fe3500eac3ac88875d1dd4"},
-    {file = "pyinstaller-5.1-py3-none-musllinux_1_1_x86_64.whl", hash = "sha256:29b3f17d75ff58b12db7b0116df1b3382c8345aefd500a177987eaf0599dec03"},
-    {file = "pyinstaller-5.1-py3-none-win32.whl", hash = "sha256:a90ee3181c88aed0893bf537a50ad547655f5d555a5b731215a5fe1946d2f3db"},
-    {file = "pyinstaller-5.1-py3-none-win_amd64.whl", hash = "sha256:996e296d1dfe27c3e89efc26dbcc247f49c0801a9b5e22e2b39f5b983cf5c2f5"},
-    {file = "pyinstaller-5.1.tar.gz", hash = "sha256:9596c70c860cbce19537354db95b180351959b4cd14a70db6ab1d1432668c313"},
+    {file = "pyinstaller-5.3-py3-none-macosx_10_13_universal2.whl", hash = "sha256:7591a9e1e2a481f99eb99036d6786e20717bc10f8f0a8ef519958cb3172fac7a"},
+    {file = "pyinstaller-5.3-py3-none-manylinux2014_aarch64.whl", hash = "sha256:d4123992556951ed24e11cf2eec9a4e18e94ee8bd63ca49d9b7fc37387097eb9"},
+    {file = "pyinstaller-5.3-py3-none-manylinux2014_i686.whl", hash = "sha256:066b83a0eae89ad418749e9e29429c152f1ff096230df11a093bbded8344ade0"},
+    {file = "pyinstaller-5.3-py3-none-manylinux2014_ppc64le.whl", hash = "sha256:4c658a762cbbee5c5997c364578804d4c1e91d688de8ed018710c2705bf1474b"},
+    {file = "pyinstaller-5.3-py3-none-manylinux2014_s390x.whl", hash = "sha256:a0e7a80fe04204add3f743101958a3cf62b79e7ccda838388784b1a35bb5b27f"},
+    {file = "pyinstaller-5.3-py3-none-manylinux2014_x86_64.whl", hash = "sha256:aa9d1b8639d2402438c179ae1c8acfd41b65366c803a5a6484a5bb7586e88647"},
+    {file = "pyinstaller-5.3-py3-none-musllinux_1_1_aarch64.whl", hash = "sha256:794e8e143ae73d1acdd2cbc52f02dd34cdfbd954ede34c7067ce68a268d8b7c2"},
+    {file = "pyinstaller-5.3-py3-none-musllinux_1_1_x86_64.whl", hash = "sha256:9efbad718fe29d425336f289871c67bfc6a1876013037fee2ef1f7613fd675a2"},
+    {file = "pyinstaller-5.3-py3-none-win32.whl", hash = "sha256:cae43e01e04f37185d23202aba8cf2837fa24ec3d0aa5ebc42e26f404e6eba95"},
+    {file = "pyinstaller-5.3-py3-none-win_amd64.whl", hash = "sha256:b38505b445cdd64279f04650e0ddfe5ac6cef61996b14f06e3c99da8aac3cfbe"},
+    {file = "pyinstaller-5.3.tar.gz", hash = "sha256:de71d4669806e4d54b23b477cc077e2e8fe9c4d57e79ed32d22b7585137fd7b7"},
 ]
 pyinstaller-hooks-contrib = [
     {file = "pyinstaller-hooks-contrib-2022.2.tar.gz", hash = "sha256:ab1d14fe053016fff7b0c6aea51d980bac6d02114b04063b46ef7dac70c70e1e"},
@@ -902,6 +917,10 @@ pyyaml = [
 requests = [
     {file = "requests-2.27.1-py2.py3-none-any.whl", hash = "sha256:f22fa1e554c9ddfd16e6e41ac79759e17be9e492b3587efa038054674760e72d"},
     {file = "requests-2.27.1.tar.gz", hash = "sha256:68d7c56fd5a8999887728ef304a6d12edc7be74f1cfa47714fc8b414525c9a61"},
+]
+setuptools = [
+    {file = "setuptools-65.3.0-py3-none-any.whl", hash = "sha256:2e24e0bec025f035a2e72cdd1961119f557d78ad331bb00ff82efb2ab8da8e82"},
+    {file = "setuptools-65.3.0.tar.gz", hash = "sha256:7732871f4f7fa58fb6bdcaeadb0161b2bd046c85905dbaa066bdcbcc81953b57"},
 ]
 shiboken6 = [
     {file = "shiboken6-6.2.3-6.2.3-cp36.cp37.cp38.cp39.cp310-abi3-macosx_10_14_universal2.whl", hash = "sha256:857b0cdd09a43df48502b177b788d2e5f92e40b3e6e90f13d5cef24bbdde0f16"},
